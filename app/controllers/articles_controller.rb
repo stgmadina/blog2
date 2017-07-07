@@ -1,10 +1,7 @@
 class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit,:update,:destroy]
-    before_action :require_user, only: [:edit,:new,:destroy
-    ]
+    before_action :require_user, only: [:edit,:new,:destroy]
     before_action :require_same_user, only: [:edit,:destroy,:update]
-    
-    
     def index
         @articles = Article.order("updated_at DESC").search(params).paginate(page: params[:page], per_page: 5)
     end
